@@ -104,7 +104,7 @@ https://drive.google.com/file/d/1ZAXPp_H-RVIBP6gECycgk5jIqxQvhqqh/view?usp=shari
 - `Spatial_dataset_prepare.ipynb` - builds spatial split datasets and metadata (Top30, Mid40, Bottom30) and saves memmap files in `splits_mm/`.
   This notebook is not shown directly in the report, but spatial experiments cannot be run without the dataset splits.
 
-- `Spatial_high_temperature_train.ipynb` - trains spatial models on high-temperature regions (bottom30 test with mid40 validation or CV auto-validation); saves unrestricted and restricted AutoML models.
+- `Spatial_high_temperature_train.ipynb` - trains spatial models on high-temperature regions (bottom30 test with mid40 validation or cross-validation, CV); saves unrestricted and restricted AutoML models.
 
   `Spatial_low_temperature_train.ipynb` - trains spatial models on low-temperature regions with the same settings as above; saves models.
 
