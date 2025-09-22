@@ -28,13 +28,33 @@ For full reproducibility (double-safe), first download `ERP_Environment_2025.yam
 ```bash
 conda env create -f ERP_Environment_2025.yaml -n erp
 conda activate erp
-
+```
 
 ## Dataset
 The dataset is too large to upload directly to GitHub. You can download the zipped file from the following Google Drive link:
 
 Key files include:
--
+- `merged/` — raw merged NetCDF files from individual simulators (e.g., `003_merged.nc`).  
+- `mergedwithymd/` — merged files with year–month–day split (`*_merged_with_ymd.nc`).  
+- `UKonly/` — merged datasets filtered to the UK region (`*_UKonly.nc`).  
+- `UKonlycleaned/` — UK-only datasets without NaN (`*_UKonly_cleaned.nc`).  
+- `UKonlycleanedwithymd/` — cleaned UK-only datasets with year–month–day split.  
+- `UKonlymonthlycleaned/` — monthly cleaned datasets for the UK (`*_UKonly_monthly_cleaned.nc`). 
+- `UKonlywithymd/` — UK-only datasets with year–month–day split (`*_UKonly_with_ymd.nc`).  
+- `splits_mm/` — spatial memmap files and metadata (`top30`, `mid40`, `bottom30`).  
+- `All_UKonly_daily_cleaned_ymd.nc` — combined daily dataset for model training and testing.  
+- `All_UKonly_monthly_cleaned.nc` — combined monthly dataset for model training and testing.  
+- `Mean_spatial.nc`, `Mean_spatial_onlyUK.nc`, `Mean_time.nc`, `Mean_time_UK_only.nc` — pre-aggregated mean datasets for analysis.
+
+## Trained models
+- **AutoML models (`*.pkl`)**  
+  Saved models from AutoML runs, including daily, monthly, and spatial splits (e.g., `automl_rf_high2low_val.pkl`, `automl_lgbm_low2high_cv.pkl`).  
+
+- **Baseline models**  
+  Random Forest, LightGBM, and XGBoost trained on daily and monthly datasets (e.g., `rf_daily.pkl`, `lgb_monthly.pkl`).  
+
+- **Logs (`*.log`)**  
+  Training logs recording AutoML runs and baseline model outputs.  
 
 
 ## File Structure
@@ -64,7 +84,3 @@ Key files include:
 
 
 ## Reproducibility
-
-
-
-
