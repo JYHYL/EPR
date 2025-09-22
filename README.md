@@ -71,6 +71,7 @@ https://drive.google.com/file/d/1ZAXPp_H-RVIBP6gECycgk5jIqxQvhqqh/view?usp=shari
 ## File Structure
 
 - `ERP_Environment_2025.yaml` - conda environment specification.
+
   `01_Consolidation files.ipynb` - merges raw NetCDF tiles from the same simulator into single files.
 
   This is not shown in the report, but it generated the merged `.nc` files, which are essential for the temporal experiment.
@@ -79,6 +80,7 @@ https://drive.google.com/file/d/1ZAXPp_H-RVIBP6gECycgk5jIqxQvhqqh/view?usp=shari
   In the report, Section 3.3 talks about processed datasets. The time series and EDA for TREFMXAV_U are shown in Figures 1–14 (Section 4.1). Other variables can be found in Appendix A.
 
 - `Baseline AutoML Model_Daily.ipynb` - trains daily baseline-style AutoML unrestricted runs.
+
   `Baseline AutoML Model_Monthly.ipynb` - trains monthly baseline-style AutoML unrestricted runs.
 
   Section 3.4.1 shows the hyperparameters from unrestricted AutoML in Table 3. The configurations from these two notebooks can be found in Table 2.
@@ -88,6 +90,7 @@ https://drive.google.com/file/d/1ZAXPp_H-RVIBP6gECycgk5jIqxQvhqqh/view?usp=shari
   The results for MLR are shown in Section 4.
 
 - `Daily AutoML Model.ipynb` - runs AutoML on the daily dataset: restricted runs for XGB, RF, LGBM.
+
   `Monthly AutoML Model.ipynb` - runs AutoML on the monthly dataset: restricted runs for XGB, RF, LGBM.
 
   The rest of Section 3.4.1 talks about the non-linear models (see 3.4.1.3). Their hyperparameters are shown in Tables 4, 5, and 6.
@@ -102,6 +105,7 @@ https://drive.google.com/file/d/1ZAXPp_H-RVIBP6gECycgk5jIqxQvhqqh/view?usp=shari
   This notebook is not shown directly in the report, but spatial experiments cannot be run without the dataset splits.
 
 - `Spatial_high_temperature_train.ipynb` - trains spatial models on high-temperature regions (bottom30 test with mid40 validation or CV auto-validation); saves unrestricted and restricted AutoML models.
+
   `Spatial_low_temperature_train.ipynb` - trains spatial models on low-temperature regions with the same settings as above; saves models.
 
   Table 7 discusses the baseline hyperparameters, and Table 8 lists RF, XGBoost and LightGBM hyperparameters with Mid40 (not CV). CV results are shown in Appendix B.
