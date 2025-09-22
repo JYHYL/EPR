@@ -69,38 +69,51 @@ https://drive.google.com/file/d/1ZAXPp_H-RVIBP6gECycgk5jIqxQvhqqh/view?usp=shari
 
 
 ## File Structure
-- `ERP_Environment_2025.yaml` - conda environment specification.  
-  *Not directly shown in the report, but required to build the environment and reproduce merged `.nc` files for temporal experiments.*  
 
-- `01_Consolidation files.ipynb` - merges raw NetCDF tiles from the same simulator into single files.  
-  *Related to Section 3.3 (processed datasets). The time series of TREFMXAV_U is shown in Figures 1–14 (Section 4.1). Other variables are shown in Appendix A.*  
+- `ERP_Environment_2025.yaml` - conda environment specification.
 
-- `02_EDA_and_Preprocessing.ipynb` - performs data checks, missing-value handling, time decomposition (year, month, day), EDA plots, and saves cleaned datasets.  
-  *Configurations from this notebook are reported in Table 2. Hyperparameters from the unrestricted AutoML runs are summarised in Table 3 (Section 3.4.1).*  
+  `01_Consolidation files.ipynb` - merges raw NetCDF tiles from the same simulator into single files.
 
-- `Baseline AutoML Model_Daily.ipynb` - trains daily baseline-style AutoML runs (estimator restricted to RF, LGBM, XGB).  
-- `Baseline AutoML Model_Monthly.ipynb` - trains monthly baseline-style AutoML runs (estimator restricted to RF, LGBM, XGB).  
+  This is not shown in the report, but it generated the merged `.nc` files, which are essential for the temporal experiment.
 
-- `Multiple linear regression/` - includes CFS input file (`erp.txt`), Python training code (`Multiple Linear Regression.py`), and output file (`Multiple Linear Regression.out`).  
-  *Provides the setup and results for the MLR baseline reported in Section 4.*  
+- `02_EDA_and_Preprocessing.ipynb` - performs data checks, missing-value handling, time decomposition (year, month, day), EDA plots, and saves cleaned datasets.
+  In the report, Section 3.3 talks about processed datasets. The time series and EDA for TREFMXAV_U are shown in Figures 1–14 (Section 4.1). Other variables can be found in Appendix A.
 
-- `Daily AutoML Model.ipynb` - runs AutoML on the daily dataset: restricted runs for XGB, RF, LGBM.  
-- `Monthly AutoML Model.ipynb` - runs AutoML on the monthly dataset: restricted runs for XGB, RF, LGBM.  
-  *These notebooks relate to Section 3.4.1.3 (non-linear models). Hyperparameters are shown in Tables 4–6. Model performance is reported in Section 4.2: daily results (Tables 9–10), best model performance (Table 11), model fit plots (Figures 15–16), spatial distributions (Figures 17–19), and feature importance (Figure 25).*  
+- `Baseline AutoML Model_Daily.ipynb` - trains daily baseline-style AutoML unrestricted runs.
 
-- `Daily Test Results.ipynb` - evaluates daily models across test windows, prints R^2 and RMSE, draws RMSE maps, and plots RF feature importance.  
-- `Monthly Test Results.ipynb` - evaluates monthly models, prints R^2 and RMSE, and saves comparison plots.  
-  *Results appear in Tables 12–14 and Figures 20–24. Feature importance is also shown in Figure 25.*  
+  `Baseline AutoML Model_Monthly.ipynb` - trains monthly baseline-style AutoML unrestricted runs.
 
-- `Spatial_dataset_prepare.ipynb` - builds spatial split datasets and metadata (Top30, Mid40, Bottom30) and saves memmap files in `splits_mm/`.  
-  *Not directly shown in the report, but required for spatial experiments. Related hyperparameters are reported in Table 7 (baseline) and Table 8 (RF, XGBoost, LGBM with Mid40 validation). CV results are shown in Appendix B.*  
+  Section 3.4.1 shows the hyperparameters from unrestricted AutoML in Table 3. The configurations from these two notebooks can be found in Table 2.
 
-- `Spatial_high_temperature_train.ipynb` - trains spatial models on high-temperature regions (Bottom30 test with Mid40 validation or CV); saves unrestricted and restricted AutoML models.  
-- `Spatial_low_temperature_train.ipynb` - trains spatial models on low-temperature regions with the same settings as above.  
-- `Spatial_dataset_test.ipynb` - tests spatial models for high2low and low2high settings (CV and validation), reports metrics, and inspects RF feature importance.  
-  *Results are shown in Tables 15–16 and Figure 25.*  
+  
+- `Multiple linear regression/` - includes CFS input file (`erp.txt`), Python training code (`Multiple Linear Regression.py`), and output file (`Multiple Linear Regression.out`). This provides the setup and results for the MLR baseline reported in the dissertation.
+  The results for MLR are shown in Section 4.
 
-*Note 1: Temporal AutoML experiments were originally run without a fixed random seed. Minor numerical differences may occur if rerun. To guarantee exact reproducibility, all trained model `.pkl` files used in the report are provided.*  
+- `Daily AutoML Model.ipynb` - runs AutoML on the daily dataset: restricted runs for XGB, RF, LGBM.
+
+  `Monthly AutoML Model.ipynb` - runs AutoML on the monthly dataset: restricted runs for XGB, RF, LGBM.
+
+  The rest of Section 3.4.1 talks about the non-linear models (see 3.4.1.3). Their hyperparameters are shown in Tables 4, 5, and 6.
+  
+- `Daily Test Results.ipynb` - evaluates daily models across test windows, prints R^2 and RMSE, draws RMSE maps for selected periods, and rank RF feature importance.
+  The temporal performance is shown in Section 4.2. The daily model performance is reported in Tables 9 and 10. The best model performance is shown in Table 11. Fit quality is illustrated in Figures 15 and 16. This notebook also includes Figures 17–19 for spatial distribution of temporal results. Feature importance is shown in Figure 25.
+
+- `Monthly Test Results.ipynb` - evaluates monthly models, prints R^2 and RMSE, and saves comparison plots.
+  Monthly results use similar tables and graphs. They can be found in Tables 12–14 and Figures 20–24. Feature importance is shown in Figure 25.
+
+- `Spatial_dataset_prepare.ipynb` - builds spatial split datasets and metadata (Top30, Mid40, Bottom30) and saves memmap files in `splits_mm/`.
+  This notebook is not shown directly in the report, but spatial experiments cannot be run without the dataset splits.
+
+- `Spatial_high_temperature_train.ipynb` - trains spatial models on high-temperature regions (bottom30 test with mid40 validation or CV auto-validation); saves unrestricted and restricted AutoML models.
+
+  `Spatial_low_temperature_train.ipynb` - trains spatial models on low-temperature regions with the same settings as above; saves models.
+
+  Table 7 discusses the baseline hyperparameters, and Table 8 lists RF, XGBoost and LightGBM hyperparameters with Mid40 (not CV). CV results are shown in Appendix B.
+
+- `Spatial_dataset_test.ipynb` - tests spatial models for high2low and low2high settings (CV and validation), reports metrics, and inspects RF feature importance.
+  The performance is shown in Tables 15 and 16 for the two cases, and feature importance can be found in Figure 25.
+
+*Note 1: Temporal AutoML experiments were originally run without a fixed random seed. Minor numerical differences may occur if rerun. To guarantee exact reproducibility, all trained model `.pkl` files used in the report are provided.*
 
 
 ## Steps to Reproduce
