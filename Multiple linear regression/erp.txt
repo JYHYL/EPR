@@ -1,0 +1,24 @@
+#!/bin/bash --login
+
+#SBATCH -p gpuA
+#SBATCH --gpus=1
+#SBATCH -n 12
+#SBATCH -t 0-1
+#SBATCH --job-name=erp_model
+#SBATCH --output=erp_model.out
+#SBATCH --error=erp_model.err
+#SBATCH --mem=32G
+
+# Load the software modules
+module purge
+module load apps/binapps/conda/25.3.0
+module load training/csf-datascience
+
+# Ensure required Python packages are installed
+pip install --quiet numpy pandas matplotlib seaborn scipy xarray netCDF4 scikit-learn
+
+# Inform app how many cores to use
+export OMP_NUM_THREADS=$SLURM_NTASKS
+
+# Run your Python script
+python 03_Model_and_Elevation.py

@@ -1,0 +1,7 @@
+====== Monthly OLS with StandardScaler ======
+Validation - R²: 0.9650, RMSE: 0.8186
+Test       - R²: 0.9648, RMSE: 0.8834
+
+====== Daily OLS with StandardScaler ======
+Validation - R²: 0.8975, RMSE: 1.5756
+Test       - R²: 0.8984, RMSE: 1.6715
