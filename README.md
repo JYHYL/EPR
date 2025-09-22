@@ -1,22 +1,40 @@
 # EPR - Machine learning for urban temperature estimates in the UK: a modelling testbed
 
 ## Project Overview
+This project builds machine learning emulators to estimate urban air temperature in the UK on daily and monthly scales.  
+The models are trained on outputs from the CLMU module of CESM-LENS simulations and tested across different time periods and spatial splits.  
+The goal is to provide a faster alternative to process-based simulations and support applications in urban planning and climate adaptation.
 
 
 ## Environment
-All dependencies are provided in `ERP_Environment_2025.yaml`
-To create and activate the environment:
+
+- Python: **3.9**  (package: 3.9.21)
+- Key libraries  
+  - xarray **2023.6.0**
+  - pandas **2.2.3**
+  - numpy **1.26.4**
+  - scikit-learn **1.2.2**
+  - flaml **2.3.5**
+  - matplotlib **3.9.2**
+  - xgboost **2.1.4** (pip)
+  - lightgbm **4.6.0** (pip)
+  - dask **2024.8.0** / distributed **2024.8.0**
+  - netcdf4 **1.7.2**
+  - cartopy **0.21.1**, shapely **2.0.1**
+  - seaborn **0.13.2**, statsmodels **0.13.5**
+
+For full reproducibility (double-safe), create the environment from the provided file:
 
 ```bash
 conda env create -f ERP_Environment_2025.yaml
-conda activate erp_env
-```
+conda activate erp
 
 ## Dataset
 The dataset is too large to upload directly to GitHub. You can download the zipped file from the following Google Drive link:
 https://drive.google.com/file/d/1hxtQ_42ra7FBgRsxAbqTIIqd4H5y2sK3/view?usp=sharing
 Key files include:
 -
+
 
 ## File Structure
 - `01_Consolidation files.ipynb`- Merge raw NetCDF files from the same simulator
